@@ -16,6 +16,7 @@ type Props = {
   kicker: string
   manifest: ManifestEntry[]
   dropcap?: boolean
+  slug: string
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   kicker,
   manifest,
   dropcap = true,
+  slug,
 } = Astro.props
 
 const numberLabel = formatNumber(number)
@@ -36,7 +38,13 @@ const titleHtml = greekTitle
   : title
 ---
 
-<BaseLayout title={`${title} — symnemata`} description={dek}>
+<BaseLayout
+  title={`${title} — symnemata`}
+  description={dek}
+  ogTitle={title}
+  ogImage={`/og/${slug}.png`}
+  ogType="article"
+>
   <div class="progress" aria-hidden="true"><div class="bar"></div></div>
 
   <Masthead rightSlot={`<span>${numberLabel}</span><span class="sep" aria-hidden="true"> · </span><span>${longDate}</span>`} />

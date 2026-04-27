@@ -7,9 +7,25 @@ import '../styles/essay.css'
 type Props = {
   title: string
   description?: string
+  ogTitle?: string
+  ogImage?: string
+  ogType?: 'website' | 'article'
 }
 
-const { title, description } = Astro.props
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogImage = '/og/default.png',
+  ogType = 'website',
+} = Astro.props
+
+const SITE = 'https://symnemata.com'
+const canonicalUrl = new URL(Astro.url.pathname, SITE).toString()
+const ogImageUrl = ogImage.startsWith('http')
+  ? ogImage
+  : new URL(ogImage, SITE).toString()
+
 const fontHref =
   'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap'
 ---
@@ -21,6 +37,19 @@ const fontHref =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:title" content={ogTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="symnēmata" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href={fontHref} />
