@@ -39,7 +39,7 @@ const titleHtml = greekTitle
 <BaseLayout title={`${title} — symnemata`} description={dek}>
   <div class="progress" aria-hidden="true"><div class="bar"></div></div>
 
-  <Masthead rightSlot={`<span>${numberLabel}</span><span>${longDate}</span>`} />
+  <Masthead rightSlot={`<span>${numberLabel}</span><span class="sep" aria-hidden="true"> · </span><span>${longDate}</span>`} />
 
   <article class="post-article">
     <header class="post-header">
