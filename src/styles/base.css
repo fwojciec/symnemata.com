@@ -25,6 +25,13 @@ html {
 body {
   font-size: var(--size-body);
   line-height: var(--leading-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > .foot {
+  margin-top: auto;
 }
 
 ::selection {
