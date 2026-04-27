@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Masthead from '../components/Masthead.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<BaseLayout
+  title="About — symnemata"
+  description="A note on the methodology behind symnemata.com — essays composed between a person and several models."
+>
+  <Masthead rightSlot="<span>Methodology</span>" />
+
+  <article class="about">
+    <div class="meta" style="margin-bottom: 1.4rem;">
+      A note on method · placeholder
+    </div>
+    <h1>What this is.</h1>
+    <p class="dek">
+      A small archive of essays composed between a human writer and one or more
+      models, with the contributions of each named in plain view.
+    </p>
+
+    <p>
+      <em>This page is a placeholder.</em> The methodology will be written as its
+      own essay — six or so commitments about authorship, attribution, and the place
+      of the model in the writing.
+    </p>
+
+    <p>
+      Until then: the site keeps a manifest at the head of every piece, naming
+      each human and each model and what they did. That manifest is the central
+      UI gesture. It is not chrome. It is the thing.
+    </p>
+
+    <div class="signature">
+      <div>Filip Wojciechowski</div>
+      <div>Editor · symnēmata.com</div>
+      <div style="margin-top:0.6rem; color: var(--ink-faint);">
+        Last revised <span class="num-tab">26 · IV · 2026</span>
+      </div>
+    </div>
+  </article>
+
+  <Footer rightHref="/" rightLabel="All pieces" />
+</BaseLayout>

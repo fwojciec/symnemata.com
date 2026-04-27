@@ -1,0 +1,11 @@
+---
+type Props = {
+  /** Number of marks. 1 = single ✦, 3 = the standard ✦ ✦ ✦ section break. */
+  marks?: 1 | 3
+}
+
+const { marks = 3 } = Astro.props
+const symbol = marks === 1 ? '✦' : '✦ ✦ ✦'
+---
+
+<div class="break full">{symbol}</div>

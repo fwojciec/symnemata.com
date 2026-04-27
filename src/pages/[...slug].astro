@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content'
+import EssayLayout from '../layouts/EssayLayout.astro'
+import Pullquote from '../components/Pullquote.astro'
+import Greek from '../components/Greek.astro'
+import Translit from '../components/Translit.astro'
+import Highlight from '../components/Highlight.astro'
+import Break from '../components/Break.astro'
+import Passage from '../components/Passage.astro'
+
+export async function getStaticPaths() {
+  const essays = await getCollection('essays', ({ data }) => !data.draft)
+  return essays.map((essay) => ({
+    params: { slug: essay.id },
+    props: { essay },
+  }))
+}
+
+const { essay } = Astro.props
+const { Content } = await render(essay)
+---
+
+<EssayLayout
+  title={essay.data.title}
+  greekTitle={essay.data.greekTitle}
+  dek={essay.data.dek}
+  date={essay.data.date}
+  number={essay.data.number}
+  kicker={essay.data.kicker}
+  manifest={essay.data.manifest}
+  dropcap={essay.data.dropcap}
+>
+  <Content
+    components={{
+      Pullquote,
+      Greek,
+      Translit,
+      Highlight,
+      Break,
+      Passage,
+    }}
+  />
+</EssayLayout>

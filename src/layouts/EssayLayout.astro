@@ -1,0 +1,66 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import Masthead from '../components/Masthead.astro'
+import Footer from '../components/Footer.astro'
+import Manifest from '../components/Manifest.astro'
+import { formatNumber } from '../lib/essays.ts'
+import { formatLongDate } from '../lib/dates.ts'
+import type { ManifestEntry } from '../content.config.ts'
+
+type Props = {
+  title: string
+  greekTitle?: string
+  dek: string
+  date: Date
+  number: number
+  kicker: string
+  manifest: ManifestEntry[]
+  dropcap?: boolean
+}
+
+const {
+  title,
+  greekTitle,
+  dek,
+  date,
+  number,
+  kicker,
+  manifest,
+  dropcap = true,
+} = Astro.props
+
+const numberLabel = formatNumber(number)
+const longDate = formatLongDate(date)
+const titleHtml = greekTitle
+  ? `<span class="gk-title">${greekTitle}</span>`
+  : title
+---
+
+<BaseLayout title={`${title} — symnemata`} description={dek}>
+  <div class="progress" aria-hidden="true"><div class="bar"></div></div>
+
+  <Masthead rightSlot={`<span>${numberLabel}</span><span>${longDate}</span>`} />
+
+  <article class="post-article">
+    <header class="post-header">
+      <div class="kicker meta">{kicker}</div>
+      <h1><Fragment set:html={titleHtml} /></h1>
+      <p class="dek">{dek}</p>
+      <Manifest entries={manifest} />
+    </header>
+
+    <div class={dropcap ? 'post has-dropcap' : 'post'}>
+      <slot />
+    </div>
+  </article>
+
+  <button class="focus-toggle" id="focus-toggle" aria-pressed="false">
+    <span data-on="Exit focus" data-off="Focus mode">Focus mode</span>
+  </button>
+
+  <Footer rightHref="/" rightLabel="All pieces" />
+
+  <script>
+    import '../scripts/reading-flow.ts'
+  </script>
+</BaseLayout>

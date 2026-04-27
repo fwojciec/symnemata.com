@@ -1,0 +1,97 @@
+/* symnemata — base typography */
+
+@import './tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-feature-settings: 'kern', 'liga', 'onum', 'calt';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--ink-faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition:
+    text-decoration-color 120ms,
+    color 120ms;
+}
+a:hover {
+  text-decoration-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Meta / labels — small caps tracked mono */
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* Greek inline group — Greek + transliteration + gloss */
+.gk {
+  font-family: var(--font-greek);
+  font-feature-settings: 'kern', 'liga';
+}
+.translit {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.gloss {
+  color: var(--ink-soft);
+}
+
+/* Drop cap on first paragraph of body */
+.has-dropcap > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 4.4em;
+  line-height: 0.86;
+  float: left;
+  padding: 0.08em 0.1em 0 0;
+  margin-top: 0.04em;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Numerals */
+.num-tab {
+  font-variant-numeric: tabular-nums;
+}
+.num-osf {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}

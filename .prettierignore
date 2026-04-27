@@ -1,0 +1,9 @@
+dist/
+.astro/
+.netlify/
+node_modules/
+coverage/
+
+# Keep MDX essays untouched — Prettier's MDX parser mangles JSX comments
+# and reflows prose in ways that change line breaks visible to the reader.
+src/content/**/*.mdx

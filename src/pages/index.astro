@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Masthead from '../components/Masthead.astro'
+import Footer from '../components/Footer.astro'
+import { formatNumber, sortByDateDesc, published } from '../lib/essays.ts'
+import { formatStampDate } from '../lib/dates.ts'
+import { manifestToCredits } from '../lib/manifest.ts'
+
+const all = await getCollection('essays')
+const flat = all.map((e) => ({ slug: e.id, ...e.data }))
+const entries = sortByDateDesc(published(flat))
+---
+
+<BaseLayout
+  title="symnemata — co-rememberings"
+  description="Long-form essays written between a person and several models. The texts are the authority. The models are named."
+>
+  <Masthead />
+
+  <section class="home-hero">
+    <div class="lockup">
+      <h1>
+        symn<span style="position:relative"
+          >ē<span class="breve-large" aria-hidden="true"></span></span
+        >mata
+      </h1>
+      <div class="etymology">
+        <span class="gk">σύν&thinsp;+&thinsp;μνῆμα</span> &nbsp;·&nbsp; co-rememberings
+        &nbsp;·&nbsp; n. pl.
+      </div>
+    </div>
+    <p class="strapline">
+      Long-form essays written between a person and several models. The texts
+      are the authority. The models are named.
+    </p>
+  </section>
+
+  <main class="index">
+    <div class="filter-row">
+      <span class="label">
+        All pieces · <span class="num-tab">{entries.length}</span>
+      </span>
+      <span class="label">Newest first ↓</span>
+    </div>
+
+    {
+      entries.length === 0 ? (
+        <p class="empty">No essays yet.</p>
+      ) : (
+        entries.map((e) => {
+          const credits = manifestToCredits(e.manifest)
+          const titleHtml = e.greekTitle
+            ? `<span class="gk">${e.greekTitle}</span>`
+            : e.title
+          return (
+            <a href={`/${e.slug}`} class="entry">
+              <div class="stamp">
+                <span class="num">{formatNumber(e.number)}</span>
+                {formatStampDate(e.date)}
+              </div>
+              <div>
+                <h3>
+                  <Fragment set:html={titleHtml} />
+                </h3>
+                <p class="dek">{e.dek}</p>
+                <div class="credits">
+                  {credits.map((c) => (
+                    <span class="pair">
+                      <span class="k">{c.role}</span>
+                      <span class={c.isModel ? 'v model' : 'v'}>
+                        {c.contributor}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          )
+        })
+      )
+    }
+  </main>
+
+  <Footer rightHref="/about" rightLabel="Methodology" />
+</BaseLayout>

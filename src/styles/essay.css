@@ -1,0 +1,216 @@
+/* Essay page layout — Tufte sidenotes wide, inline narrow */
+
+.post-header {
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 4rem;
+}
+
+.post-header .kicker {
+  margin-bottom: 2rem;
+}
+
+.post-header h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  margin: 0 auto 1rem;
+  max-width: 22ch;
+  color: var(--ink);
+  font-feature-settings: 'kern', 'liga', 'dlig', 'swsh';
+}
+
+.post-header .gk-title {
+  font-family: var(--font-greek);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.post-header .dek {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  max-width: 36rem;
+  margin: 0 auto;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+/* ── Body grid ───────────────────────────────────────────── */
+.post {
+  --col-body: 36rem;
+  --col-side: 16rem;
+  --col-gutter: 3.25rem;
+  --col-outer: 2rem;
+
+  display: grid;
+  grid-template-columns:
+    1fr
+    [body-start] minmax(0, var(--col-body)) [body-end]
+    var(--col-gutter)
+    [side-start] var(--col-side) [side-end]
+    1fr;
+  column-gap: 0;
+  padding: 0 var(--col-outer);
+  padding-bottom: 8rem;
+}
+
+.post > * {
+  grid-column: body-start / body-end;
+  min-width: 0;
+}
+
+.post > .full {
+  grid-column: 2 / -2;
+}
+
+.post > .span-side {
+  grid-column: body-start / side-end;
+}
+
+/* ── Sidenotes ───────────────────────────────────────────── */
+.sidenote {
+  grid-column: side-start / side-end;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-top: 0.4em;
+  letter-spacing: 0.005em;
+  padding-left: 0.8rem;
+  border-left: 1px solid var(--rule);
+}
+.sidenote .num {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-weight: 500;
+  margin-right: 0.4em;
+}
+.sidenote p {
+  margin: 0;
+}
+
+/* Inline ref marker */
+.ref {
+  font-family: var(--font-mono);
+  font-size: 0.62em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.ref:hover {
+  color: var(--ink);
+}
+
+/* ── Pullquote ───────────────────────────────────────────── */
+.pullquote {
+  grid-column: 2 / -2;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1.18;
+  letter-spacing: var(--tracking-display);
+  text-align: center;
+  max-width: 38rem;
+  margin: 3.2rem auto;
+  font-weight: 400;
+  color: var(--ink);
+  font-style: italic;
+}
+.pullquote::before,
+.pullquote::after {
+  content: '';
+  display: block;
+  width: 2.4rem;
+  height: 1px;
+  background: var(--ink-faint);
+  margin: 0 auto 1.4rem;
+}
+.pullquote::after {
+  margin: 1.4rem auto 0;
+}
+
+/* ── Block quote (passage) ───────────────────────────────── */
+.passage,
+.post blockquote {
+  font-family: var(--font-display);
+  font-size: 1.05em;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 2rem 0;
+  padding: 0.4rem 0 0.4rem 1.4rem;
+  border-left: 2px solid var(--accent);
+  font-style: italic;
+}
+.passage .gk,
+.post blockquote .gk {
+  font-style: normal;
+}
+
+/* ── Body paragraphs ─────────────────────────────────────── */
+.post p {
+  margin: 0 0 1.1em 0;
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+/* ── Section break ───────────────────────────────────────── */
+.break {
+  text-align: center;
+  margin: 2.6rem 0;
+  color: var(--ink-faint);
+  letter-spacing: 0.6em;
+  font-size: 0.7rem;
+}
+
+.post h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: var(--tracking-display);
+  margin: 2.6rem 0 1rem;
+  color: var(--ink);
+}
+
+/* ── Phrase highlight ────────────────────────────────────── */
+.highlight {
+  background: linear-gradient(
+    transparent 60%,
+    var(--highlight) 60%,
+    var(--highlight) 90%,
+    transparent 90%
+  );
+  padding: 0 0.05em;
+}
+
+/* ── Narrow / mobile ─────────────────────────────────────── */
+@media (max-width: 56rem) {
+  .post-header {
+    padding: 3rem 1.5rem 2rem;
+  }
+  .post {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 1.5rem;
+  }
+  .post > *,
+  .post > .full,
+  .post > .span-side {
+    grid-column: 1 / -1;
+  }
+  .sidenote {
+    margin: 0.6rem 0 1.6rem;
+    padding-left: 0.8rem;
+    font-size: 0.82rem;
+  }
+  .pullquote {
+    margin: 2rem 0;
+    font-size: 1.5rem;
+  }
+}

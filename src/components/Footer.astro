@@ -1,0 +1,17 @@
+---
+type Props = {
+  rightHref?: string
+  rightLabel?: string
+}
+
+const year = new Date().getFullYear()
+const { rightHref = '/', rightLabel = 'All pieces' } = Astro.props
+---
+
+<footer class="foot">
+  <div class="left">© <span class="num-tab">{year}</span> · symnēmata.com</div>
+  <div class="center">— a co-remembering —</div>
+  <div class="right">
+    <a href="/about">Methodology</a> · <a href={rightHref}>{rightLabel}</a>
+  </div>
+</footer>

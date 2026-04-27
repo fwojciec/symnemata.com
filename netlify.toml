@@ -1,0 +1,11 @@
+# Astro's @astrojs/netlify adapter writes most build settings into _redirects
+# at build time. This file pins the Node version and the build command for
+# Netlify's UI/CI. Keep it minimal.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--prefer-offline"

@@ -1,0 +1,14 @@
+---
+type Props = {
+  href?: string
+  label?: string
+}
+
+const { href = '/', label = 'symnemata' } = Astro.props
+---
+
+<a href={href} class="wordmark" aria-label={label}>
+  <span class="breve" aria-hidden="true"></span>symnēmata<span class="dot"
+    >.com</span
+  >
+</a>

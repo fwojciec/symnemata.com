@@ -1,0 +1,28 @@
+---
+import Wordmark from './Wordmark.astro'
+
+type Props = {
+  rightSlot?: string
+}
+
+const { rightSlot } = Astro.props
+---
+
+<header class="masthead">
+  <nav class="nav-l meta">
+    <a href="/">Index</a>
+    <a href="/about">About</a>
+  </nav>
+  <Wordmark />
+  <nav class="nav-r meta">
+    {
+      rightSlot ? (
+        <span set:html={rightSlot} />
+      ) : (
+        <span>
+          est. <span class="num-tab">2026</span>
+        </span>
+      )
+    }
+  </nav>
+</header>

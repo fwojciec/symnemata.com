@@ -1,0 +1,279 @@
+/* Homepage + About page */
+
+.home-hero {
+  padding: 7rem 2rem 5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.home-hero .lockup {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.home-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 7vw, 5.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+  position: relative;
+  font-feature-settings: 'kern', 'liga', 'dlig';
+}
+.home-hero h1 .breve-large {
+  display: inline-block;
+  width: 0.9ch;
+  height: 0.22em;
+  border: 2.5px solid var(--accent);
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  position: absolute;
+  top: -0.06em;
+  left: 0.3em;
+}
+
+.home-hero .etymology {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 1.4rem;
+}
+.home-hero .etymology .gk {
+  font-family: var(--font-greek);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.home-hero .strapline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  margin: 2.4rem auto 0;
+  max-width: 32rem;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+/* ── Index list ──────────────────────────────────────────── */
+.index {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.index .filter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1rem;
+}
+.index .filter-row .label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 2rem;
+  padding: 2.4rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 150ms;
+  margin: 0 -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.entry:hover {
+  background: var(--bg-soft);
+}
+.entry:hover h3 {
+  color: var(--accent);
+}
+
+.entry .stamp {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  padding-top: 0.5rem;
+  line-height: 1.5;
+}
+.entry .stamp .num {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.25rem;
+}
+
+.entry h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.85rem;
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  transition: color 120ms;
+  text-wrap: balance;
+}
+.entry h3 .gk {
+  font-style: italic;
+}
+
+.entry .dek {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: 0 0 0.9rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.entry .credits {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.4rem;
+}
+.entry .credits .pair {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+.entry .credits .pair .k {
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-size: 0.6rem;
+}
+.entry .credits .pair .v {
+  color: var(--ink-soft);
+}
+.entry .credits .pair .v.model {
+  color: var(--accent);
+}
+
+.index .empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--ink-mute);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+@media (max-width: 56rem) {
+  .home-hero {
+    padding: 4rem 1.5rem 3rem;
+  }
+  .index {
+    padding: 2.5rem 1.2rem;
+  }
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 1.8rem 0.6rem;
+  }
+  .entry h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ── About page ──────────────────────────────────────────── */
+.about {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+.about h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  letter-spacing: -0.018em;
+  margin: 0 0 0.6rem;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.about .dek {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin: 0 0 3rem;
+  line-height: 1.4;
+}
+.about h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.35rem;
+  letter-spacing: -0.005em;
+  margin: 2.6rem 0 0.8rem;
+  color: var(--ink);
+}
+.about p {
+  margin: 0 0 1.1em;
+  text-wrap: pretty;
+}
+.about .principles {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.6rem;
+  border-top: 1px solid var(--rule);
+}
+.about .principles li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.about .principles .num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+.about .principles .body strong {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+.about .principles .body span {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+.about .signature {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+}

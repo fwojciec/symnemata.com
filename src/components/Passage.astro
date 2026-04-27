@@ -1,0 +1,11 @@
+---
+type Props = {
+  /** Extend the blockquote into the sidenote column on wide screens. */
+  spanSide?: boolean
+}
+
+const { spanSide = false } = Astro.props
+const cls = spanSide ? 'passage span-side' : 'passage'
+---
+
+<blockquote class={cls}><slot /></blockquote>

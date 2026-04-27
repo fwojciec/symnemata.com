@@ -1,0 +1,27 @@
+---
+import { formatManifest } from '../lib/manifest.ts'
+import type { ManifestEntry } from '../content.config.ts'
+
+type Props = {
+  entries: ManifestEntry[]
+}
+
+const { entries } = Astro.props
+const rows = formatManifest(entries)
+---
+
+<dl class="manifest" aria-label="Contributors">
+  {
+    rows.map((row) => (
+      <div class="row">
+        <dt class="role">{row.role}</dt>
+        <dd class={row.isModel ? 'who model' : 'who'}>{row.contributor}</dd>
+        {row.note ? (
+          <dd class="meta-tag">{row.note}</dd>
+        ) : (
+          <dd class="meta-tag" aria-hidden="true" />
+        )}
+      </div>
+    ))
+  }
+</dl>

@@ -1,0 +1,40 @@
+/* symnemata — design tokens (Variation A · Scholarly)
+   ─────────────────────────────────────────────────────
+   Single canonical theme. Warm off-white, deep ink, restrained terracotta accent.
+*/
+
+:root {
+  /* — palette ----------------------------------------------------------- */
+  --bg: oklch(97% 0.008 80);
+  --bg-soft: oklch(95% 0.012 75);
+  --rule: oklch(85% 0.012 70);
+  --ink: oklch(20% 0.012 60);
+  --ink-soft: oklch(38% 0.012 60);
+  --ink-mute: oklch(55% 0.012 60);
+  --ink-faint: oklch(72% 0.01 60);
+  --accent: oklch(48% 0.1 35);
+  --accent-soft: oklch(48% 0.1 35 / 0.1);
+  --highlight: oklch(94% 0.05 90);
+
+  /* — type stack -------------------------------------------------------- */
+  --font-body:
+    'EB Garamond', 'Adobe Garamond Pro', Garamond, 'Times New Roman', serif;
+  --font-display: 'EB Garamond', 'Adobe Garamond Pro', Garamond, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Menlo', monospace;
+  --font-greek: 'EB Garamond', 'GFS Didot', 'New Athena Unicode', serif;
+
+  /* — sizing ------------------------------------------------------------ */
+  --size-body: 1.1875rem; /* 19px */
+  --leading-body: 1.62;
+  --measure: 36rem; /* ~560–600px */
+  --measure-wide: 72rem;
+
+  /* — weights / tracking ------------------------------------------------ */
+  --weight-body: 400;
+  --weight-emph: 500;
+  --weight-bold: 600;
+  --tracking-meta: 0.12em;
+  --tracking-display: -0.01em;
+
+  --shadow-quote: 0 1px 0 0 var(--rule);
+}
