@@ -1,9 +1,8 @@
 /* Essay page layout — Tufte sidenotes wide, inline narrow */
 
 .post-header {
-  padding: 5rem 2rem 3rem;
+  padding: 5rem 2rem 0;
   text-align: center;
-  border-bottom: 1px solid var(--rule);
   margin-bottom: 4rem;
 }
 
@@ -193,7 +192,7 @@
 /* ── Narrow / mobile ─────────────────────────────────────── */
 @media (max-width: 56rem) {
   .post-header {
-    padding: 3rem 1.5rem 2rem;
+    padding: 3rem 1.5rem 0;
   }
   .post {
     grid-template-columns: minmax(0, 1fr);
