@@ -185,7 +185,7 @@
 
 .focus-toggle {
   position: fixed;
-  bottom: 1.6rem;
+  bottom: calc(1.6rem + var(--foot-overlap, 0px));
   right: 1.6rem;
   z-index: 70;
   background: var(--bg);
@@ -207,7 +207,28 @@
 
 @media (max-width: 56rem) {
   .masthead {
-    padding: 1rem 1.2rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'wm wm'
+      'navl navr';
+    row-gap: 0.55rem;
+    column-gap: 0.8rem;
+    padding: 0.9rem 1.2rem 0.7rem;
+  }
+  .masthead .wordmark {
+    grid-area: wm;
+    justify-self: center;
+  }
+  .masthead .nav-l {
+    grid-area: navl;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--rule);
+  }
+  .masthead .nav-r {
+    grid-area: navr;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--rule);
   }
   .manifest {
     padding: 1rem 0;
@@ -225,5 +246,8 @@
   }
   .foot .right {
     text-align: center;
+  }
+  .focus-toggle {
+    display: none;
   }
 }

@@ -51,5 +51,22 @@ function initFocusToggle(): void {
   })
 }
 
+function initFooterAwareToggle(): void {
+  const btn = document.getElementById('focus-toggle')
+  const foot = document.querySelector<HTMLElement>('.foot')
+  if (!btn || !foot) return
+
+  const update = (): void => {
+    const r = foot.getBoundingClientRect()
+    const overlap = Math.max(0, window.innerHeight - r.top)
+    btn.style.setProperty('--foot-overlap', `${overlap}px`)
+  }
+
+  window.addEventListener('scroll', update, { passive: true })
+  window.addEventListener('resize', update)
+  update()
+}
+
 initProgressBar()
 initFocusToggle()
+initFooterAwareToggle()
