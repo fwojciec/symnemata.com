@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
 import netlify from '@astrojs/netlify'
 
 import { sidenotes } from './src/lib/sidenotes.ts'
@@ -17,6 +18,9 @@ export default defineConfig({
       remarkPlugins: [],
       rehypePlugins: [sidenotes],
       gfm: true,
+    }),
+    sitemap({
+      filter: (page) => !page.includes('/rss.xml'),
     }),
   ],
   markdown: {
